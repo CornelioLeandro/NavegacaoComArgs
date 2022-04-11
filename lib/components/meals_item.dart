@@ -9,14 +9,23 @@ class MealItem extends StatelessWidget {
   MealItem(this.meal);
 
   void _selecMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(AppRoutes.MEAL_DETAIL,
-    arguments: meal);
+    Navigator.of(context)
+        .pushNamed(
+      AppRoutes.MEAL_DETAIL,
+      arguments: meal,
+    ).then((result) {
+      if (result == null) {
+        print('sem $result');
+      } else {
+        print('O nome da redfeitao é ${result.toString()}');
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:() => _selecMeal(context),
+      onTap: () => _selecMeal(context),
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(15),
         topRight: Radius.circular(15),
